@@ -124,6 +124,25 @@ plt.ylabel('Phi/Phi(a=0)')
 plt.xscale("log")
 plt.show()
 
+#For matter Perturbations
+#SMALL SCALE 
+w6,k,x6,a2 = initial_condition(10**(-7),10**(-3),3)
+Sol6 = Rk.RungKutta4(Coupled_equations, w6, x6)
+
+# due to very high value of k my RK4 library didnt work
+w7,k,x7,a2 = initial_condition(10**(-7),10**(-3),4)
+Sol7 =odeint(Coupled_equations, w7, x7)
+
+plt.title(" Perturbation of matter in a CDM model for Small scale mode")
+plt.plot(a2,Sol7[:,0]/w7[0], color = 'blue',label=f'k = 1 h M/pc')
+plt.plot(a2,Sol6[:,0]/w6[0], color = 'green',label=f'k = 10 h M/pc')
+plt.legend(loc='best')
+plt.xlabel('a')
+plt.ylabel('\delta_m/\delta_m(a=0)')
+
+plt.xscale("log")
+plt.show()
+
 
 
 
